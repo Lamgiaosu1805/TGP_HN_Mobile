@@ -12,10 +12,12 @@ export default function App() {
     <NavigationContainer>
       <SafeAreaView style={styles.container}>
         <StatusBar style="auto" />
-        <Tab.Navigator 
+        <Tab.Navigator
+          
           initialRouteName='Home' 
           screenOptions={
             ({route}) => ({
+              headerShown:false,
               tabBarIcon: ({focused}) => {
                 let iconName;
                 let routeName = route.name;
