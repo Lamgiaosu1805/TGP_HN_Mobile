@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TGP_HN",
-    "slug": "TGP_HN",
+    "slug": "tgp-hn-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,16 +18,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "y"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.kylanx11.tgphnapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fc0bcb7e-2d3f-45ee-ad9f-0613e064a777"
+      }
+    },
+    "owner": "kylanx11"
   }
 }
