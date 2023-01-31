@@ -9,10 +9,13 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "~47.0.12",
+    "cheerio": "^1.0.0-rc.12",
+    "expo": "^47.0.13",
     "expo-status-bar": "~1.4.2",
+    "himalaya": "^1.1.0",
     "react": "18.1.0",
-    "react-native": "0.70.5"
+    "react-native": "0.70.5",
+    "expo-linear-gradient": "~12.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
