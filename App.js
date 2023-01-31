@@ -43,8 +43,8 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
-      <View style={{paddingHorizontal: 20, paddingVertical: 16,}} >
-        <Image source={{uri: "https://www.tonggiaophanhanoi.org/wp-content/uploads/2020/12/logo_150.png"}} style={{width: 80, height: 85}}/>
+      <View style={{paddingHorizontal: 20, paddingVertical: 16}} >
+        <Image loadingIndicatorSource={require('./assets/Iphone-spinner-2.gif')} source={{uri: "https://www.tonggiaophanhanoi.org/wp-content/uploads/2020/12/logo_150.png"}} style={{width: 80, height: 85}}/>
       </View>
       {postData.length > 0 
       ? <View style={{flex: 1}}>
@@ -56,7 +56,7 @@ export default function App() {
             <Post postData={postData[4]}/>
           </ScrollView>
         </View>
-      : <View>
+      : <ScrollView>
           <View style = {{alignItems: 'center'}}>
             <Shimmer 
               width={Dimensions.get('window').width-40}
@@ -93,7 +93,7 @@ export default function App() {
           <View style={{paddingLeft: 20 , marginTop: 8, marginBottom: 12}} >
             <Shimmer width={Dimensions.get('window').width/2} height={20}/>
           </View>
-        </View>
+        </ScrollView>
       }
     </SafeAreaView>
   );
