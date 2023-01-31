@@ -46,8 +46,12 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-        <View style={{paddingHorizontal: 20, paddingVertical: 16}} >
+        <View style={{paddingHorizontal: 20, paddingVertical: 16, flexDirection: 'row'}} >
             <Image loadingIndicatorSource={require('../../assets/Iphone-spinner-2.gif')} source={{uri: "https://www.tonggiaophanhanoi.org/wp-content/uploads/2020/12/logo_150.png"}} style={{width: 80, height: 85}}/>
+            <View style={styles.textLogo}>
+                <Text style={styles.textLogo_1}>Tổng Giáo Phận Hà Nội</Text>
+                <Text style={styles.textLogo_2}>Archdiocese of Ha Noi</Text>
+            </View>
         </View>
         
         {postData.length > 0 
@@ -108,5 +112,21 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+    },
+    textLogo: {
+        flex: 1,
+        justifyContent:'center',
+        marginLeft: 12
+    },
+    textLogo_1: {
+        color: '#f70303',
+        fontSize: 28,
+        fontWeight: '700',
+        marginBottom: 4,
+        fontFamily: "Times New Roman"
+    },
+    textLogo_2: {
+        color: '#ea8203',
+        fontSize: 23
     }
 })
