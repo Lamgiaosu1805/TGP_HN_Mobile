@@ -7,7 +7,9 @@ export default function Post(props) {
     return (
         <View style = {styles.container}>
             <View style = {styles.highlightPost}>
-                <Image style={styles.img} source={{uri:postData.imageUrl}}/>
+                <View style={styles.imgContainer}>
+                    <Image style={styles.img} source={{uri:postData.imageUrl}} loadingIndicatorSource={require('../../assets/Iphone-spinner-2.gif')}/>
+                </View>
                 <Text style={styles.titlePost}>{postData.titlePost}</Text>
                 <Text style={styles.metaData_Date}>{postData.metaData_Date}</Text>
             </View>
@@ -18,6 +20,14 @@ export default function Post(props) {
 
 const styles = StyleSheet.create({
     container: {
+        
+    },
+    highlightPost: {
+        paddingHorizontal: 20,
+        marginTop: 8,
+        paddingVertical: 12,
+    },
+    imgContainer: {
         shadowColor: '#171717',
         shadowOffset: {
             width: 4,
@@ -25,11 +35,6 @@ const styles = StyleSheet.create({
         },
         shadowRadius: 3,
         shadowOpacity: 0.2,
-    },
-    highlightPost: {
-        paddingHorizontal: 20,
-        marginTop: 8,
-        paddingVertical: 12,
     },
     img: {
         width: Dimensions.get('window').width-40,
