@@ -7,15 +7,15 @@ import * as cheerio from 'cheerio';
 
 export default function HomeScreen() {
     const [postData, setPostData] = useState([]);
-    let data = [];
     const loadHtml = async () => {
+    let data = [];
     const searchUrl = `https://www.tonggiaophanhanoi.org/`;
     try {
       const response = await fetch(searchUrl);// fetch page
       const htmlString = await response.text();
       const $ = cheerio.load(htmlString);
       $(".elementor-post").each((index, el) => {
-
+        
         //get post image
         let imageUrl = $(el).find('.elementor-post__thumbnail__link').find('.elementor-post__thumbnail').text().match('src="[^\"]{1,}"');
         if(imageUrl != null) {
@@ -29,11 +29,13 @@ export default function HomeScreen() {
         // get meta data Date post
         let metaData_Date = $(el).find('.elementor-post__text').find('.elementor-post__meta-data .elementor-post-date').text().trim();
 
+        //get link detail post
+        let href = $(el).find('.elementor-post__thumbnail__link').attr('href');
+
         data.push({
-          imageUrl, titlePost, metaData_Date
+          imageUrl, titlePost, metaData_Date, href
         });
       });
-      
       setPostData(data);
     } catch (error) {
       console.log(error);
@@ -47,7 +49,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
         <View style={{paddingHorizontal: 20, paddingVertical: 16, flexDirection: 'row'}} >
-            <Image loadingIndicatorSource={require('../../assets/Iphone-spinner-2.gif')} source={{uri: "https://www.tonggiaophanhanoi.org/wp-content/uploads/2020/12/logo_150.png"}} style={{width: 80, height: 85}}/>
+            <Image loadingIndicatorSource={require('../../assets/Iphone-spinner-2.gif')} source={{uri: "https://www.tonggiaophanhanoi.org/wp-content/uploads/2020/12/logo_150.png"}} style={{width: 80*2/3, height: 85*2/3}}/>
             <View style={styles.textLogo}>
                 <Text style={styles.textLogo_1}>Tổng Giáo Phận Hà Nội</Text>
                 <Text style={styles.textLogo_2}>Archdiocese of Ha Noi</Text>
@@ -120,13 +122,13 @@ const styles = StyleSheet.create({
     },
     textLogo_1: {
         color: '#f70303',
-        fontSize: 28,
+        fontSize: 22,
         fontWeight: '700',
-        marginBottom: 4,
+        marginBottom: 2,
         fontFamily: "Times New Roman"
     },
     textLogo_2: {
         color: '#ea8203',
-        fontSize: 23
+        fontSize: 18
     }
 })
