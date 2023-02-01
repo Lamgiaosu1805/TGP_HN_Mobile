@@ -9,7 +9,6 @@ import ModalBottomSheet from '../components/BottomSheet';
 export default function HomeScreen() {
     const [isOpen, setIsOpen] = useState(false);
     const handleSnapPress = useCallback((status) => {
-        // sheetRef.current?.snapToIndex(index);
         setIsOpen(status)
     }, []);
     const [postData, setPostData] = useState([]);

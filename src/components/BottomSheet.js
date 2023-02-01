@@ -13,8 +13,8 @@ export default function ModalBottomSheet(props) {
       enablePanDownToClose={true}
       onClose={() => {onClose(false)}}
     >
-      <BottomSheetView>
-          <Text>Hello</Text>
+      <BottomSheetView style={{flex: 1}}>
+        <View style={{flex:1, backgroundColor: '#F6F6F6'}}></View>
       </BottomSheetView>
     </BottomSheet>
   )
