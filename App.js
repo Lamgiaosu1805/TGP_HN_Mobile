@@ -13,7 +13,6 @@ export default function App() {
       <SafeAreaView style={styles.container}>
         <StatusBar style="auto" />
         <Tab.Navigator
-          
           initialRouteName='Home' 
           screenOptions={
             ({route}) => ({
@@ -44,6 +43,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
 });

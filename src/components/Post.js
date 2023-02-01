@@ -1,11 +1,14 @@
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React from 'react';
 
 export default function Post(props) {
     const postData = props.postData;
-
+    const onClickPost = props.onClickPost;
     return (
-        <View style = {styles.container}>
+        <TouchableOpacity 
+            style = {styles.container} 
+            onPress={() => {onClickPost(true)}}
+            activeOpacity={0.7}>
             <View style = {styles.highlightPost}>
                 <View style={styles.imgContainer}>
                     <Image style={styles.img} source={{uri:postData.imageUrl}} loadingIndicatorSource={require('../../assets/Iphone-spinner-2.gif')}/>
@@ -13,8 +16,7 @@ export default function Post(props) {
                 <Text style={styles.titlePost}>{postData.titlePost}</Text>
                 <Text style={styles.metaData_Date}>{postData.metaData_Date}</Text>
             </View>
-        </View>
-        
+        </TouchableOpacity>
     )
 }
 
