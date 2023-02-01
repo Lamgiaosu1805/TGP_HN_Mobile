@@ -1,13 +1,24 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react';
+import { useDispatch } from 'react-redux'
+import { setUrlPost } from '../redux/urlPostSlice';
 
 export default function Post(props) {
+    const dispatch = useDispatch()
     const postData = props.postData;
     const onClickPost = props.onClickPost;
+    const handleOnClickPost = () => {
+        onClickPost(true);
+        const action = setUrlPost(postData.postUrl);
+        console.log(action);
+        dispatch(action)
+    }
     return (
         <TouchableOpacity 
             style = {styles.container} 
-            onPress={() => {onClickPost(true)}}
+            onPress={() => {
+                handleOnClickPost();
+            }}
             activeOpacity={0.7}>
             <View style = {styles.highlightPost}>
                 <View style={styles.imgContainer}>
