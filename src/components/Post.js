@@ -10,7 +10,6 @@ export default function Post(props) {
     const handleOnClickPost = () => {
         onClickPost(true);
         const action = setUrlPost(postData.postUrl);
-        console.log(action);
         dispatch(action)
     }
     return (
