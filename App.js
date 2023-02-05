@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
+import HomeWebView from './src/screens/HomeWebView';
 
 
 const Tab = createBottomTabNavigator();
@@ -17,14 +18,14 @@ export default function App() {
         <SafeAreaView style={styles.container}>
           <StatusBar style="auto" />
           <Tab.Navigator
-            initialRouteName='Home' 
+            initialRouteName='HomeWebView' 
             screenOptions={
               ({route}) => ({
                 headerShown:false,
                 tabBarIcon: ({focused}) => {
                   let iconName;
                   let routeName = route.name;
-                  if(routeName == "Home") {
+                  if(routeName == "HomeWebView") {
                     iconName = 'home'
                   }
                   else if(routeName == "Test") {
@@ -37,7 +38,7 @@ export default function App() {
               })
             }
           >
-            <Tab.Screen name="Home" component={HomeScreen} options={{title: 'Trang chủ'}}/>
+            <Tab.Screen name="HomeWebView" component={HomeWebView} options={{title: 'Trang chủ'}}/>
             <Tab.Screen name="Test" component={TestScreens}/>
           </Tab.Navigator>
         </SafeAreaView>
