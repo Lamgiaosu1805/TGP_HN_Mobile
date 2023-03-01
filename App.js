@@ -1,46 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import TestScreens from './src/screens/TestScreens';
-import HomeScreen from './src/screens/HomeScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
-import HomeWebView from './src/screens/HomeWebView';
+import CalendarDetail from './src/screens/CalendarDetail';
+import BottomTab from './src/navigator/BottomTab';
 
-
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
         <SafeAreaView style={styles.container}>
           <StatusBar style="auto" />
-          <Tab.Navigator
-            initialRouteName='HomeWebView' 
-            screenOptions={
-              ({route}) => ({
-                headerShown:false,
-                tabBarIcon: ({focused}) => {
-                  let iconName;
-                  let routeName = route.name;
-                  if(routeName == "HomeWebView") {
-                    iconName = 'home'
-                  }
-                  else if(routeName == "Test") {
-                    iconName = 'add'
-                  }
-                  return <Ionicons name={iconName} size={18} color={focused ? 'blue' : ''}/>
-                },
-                tabBarActiveTintColor: 'blue',
-                tabBarStyle: { height: 40 },
-              })
-            }
+          <Stack.Navigator
+            initialRouteName='Home'
+            screenOptions={{
+              headerShown: false
+            }}
           >
-            <Tab.Screen name="HomeWebView" component={HomeWebView} options={{title: 'Trang chủ'}}/>
-            <Tab.Screen name="Test" component={TestScreens}/>
-          </Tab.Navigator>
+            <Stack.Screen name="Home" component={BottomTab}/>
+            <Stack.Screen name="CalendarDetail" component={CalendarDetail}/>
+          </Stack.Navigator>
         </SafeAreaView>
       </NavigationContainer>
     </Provider>
