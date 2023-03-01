@@ -1,8 +1,7 @@
 import { Dimensions, Image, ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react';
 import * as cheerio from 'cheerio';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Shimmer from '../components/Shimmer';
 
 export default function CalendarScreen({ navigation }) {
