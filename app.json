@@ -4,10 +4,10 @@
     "slug": "tgp-hn-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/tgphanoi.png",
+    "icon": "./assets/white-tgphanoi.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/c8d5dc40f5d05824f9138513397dbceb.jpg",
+      "image": "./assets/splash_image.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
