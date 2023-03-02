@@ -1,11 +1,9 @@
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native'
+import { TouchableOpacity, ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { useEffect } from 'react'
 import * as cheerio from 'cheerio';
 import { useState } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
 
 export default function CalendarDetail({ route, navigation }) {
     const [content, setContent] = useState([]);
