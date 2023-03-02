@@ -8,7 +8,10 @@
       "distribution": "internal",
       "ios": {
         "resourceClass": "m1-medium"
-      }
+      },
+      "your-build-profile": {
+        "releaseChannel": "default"
+      }  
     },
     "preview": {
       "distribution": "internal",

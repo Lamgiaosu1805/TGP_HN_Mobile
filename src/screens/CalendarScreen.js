@@ -1,8 +1,7 @@
-import { Dimensions, Image, ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native'
 import React from 'react';
 import * as cheerio from 'cheerio';
 import { useEffect, useState } from 'react';
-import Shimmer from '../components/Shimmer';
 
 export default function CalendarScreen({ navigation }) {
     const [data, setData] = useState([])
@@ -33,12 +32,12 @@ export default function CalendarScreen({ navigation }) {
     }, []);
 
     return (
-        <View style = {styles.container}>
+        <ScrollView style = {styles.container} showsVerticalScrollIndicator={false}>
             <Image style={styles.img} source={{uri: "https://www.tonggiaophanhanoi.org/wp-content/uploads/2022/11/lich-phung-vu-2023-800x610.jpg"}}/>
             <View style = {styles.title}>
                 <Text style={styles.titleText}>LỊCH PHỤNG VỤ CÔNG GIÁO 2022 – 2023</Text>
             </View>
-            <ScrollView style={{marginTop: 24}} showsVerticalScrollIndicator={false}>
+            <View style={{marginTop: 24}}>
                 {
                     data.length != 0
                         ? data.map((e, index) => {
@@ -46,17 +45,17 @@ export default function CalendarScreen({ navigation }) {
                                 key={index} 
                                 style={styles.monthItem} 
                                 activeOpacity={0.5}
-                                onPress = {() => navigation.navigate('CalendarDetail')}
+                                onPress = {() => navigation.navigate('CalendarDetail', e)}
                             >
                                 <Text style={styles.monthItemText}>{e.month.toUpperCase()}</Text>
                             </TouchableOpacity>
                         })
                         : <View style={{marginHorizontal: 16}}>
-                            <Shimmer width={400} height={40}/>
+                            <ActivityIndicator color="#009688" size="large" />
                         </View>
                 }
-            </ScrollView>
-        </View>
+            </View>
+        </ScrollView>
     )
 }
 
