@@ -1,8 +1,7 @@
-import { Dimensions, Image, ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native'
 import React from 'react';
 import * as cheerio from 'cheerio';
 import { useEffect, useState } from 'react';
-import Shimmer from '../components/Shimmer';
 
 export default function CalendarScreen({ navigation }) {
     const [data, setData] = useState([])
@@ -52,7 +51,7 @@ export default function CalendarScreen({ navigation }) {
                             </TouchableOpacity>
                         })
                         : <View style={{marginHorizontal: 16}}>
-                            <Shimmer width={400} height={40}/>
+                            <ActivityIndicator color="#009688" size="large" />
                         </View>
                 }
             </View>

@@ -13,7 +13,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <SafeAreaView style={styles.container}>
-          <StatusBar style="auto" />
+          <StatusBar style="dark" />
           <Stack.Navigator
             initialRouteName='Home'
             screenOptions={{
