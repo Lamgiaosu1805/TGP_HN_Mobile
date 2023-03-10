@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CalendarScreen from '../screens/CalendarScreen';
 import HomeWebView from '../screens/HomeWebView';
+import HocGiaoLy from '../screens/HocGiaoLy';
 
 const Tab = createBottomTabNavigator();
 export default function BottomTab() {
@@ -18,10 +19,13 @@ export default function BottomTab() {
                     let iconName;
                     let routeName = route.name;
                     if(routeName == "HomeWebView") {
-                    iconName = 'home'
+                        iconName = 'home'
                     }
                     else if(routeName == "CalendarView") {
-                    iconName = 'calendar'
+                        iconName = 'ios-calendar-outline'
+                    }
+                    else if(routeName == "GiaoLyView") {
+                        iconName = 'ios-book-outline'
                     }
                     return <Ionicons name={iconName} size={18} color={focused ? 'blue' : ''}/>
                 },
@@ -32,6 +36,7 @@ export default function BottomTab() {
         >
             <Tab.Screen name="HomeWebView" component={HomeWebView} options={{title: 'Trang chủ'}}/>
             <Tab.Screen name="CalendarView" component={CalendarScreen} options={{title: 'Lịch Công giáo'}}/>
+            <Tab.Screen name="GiaoLyView" component={HocGiaoLy} options={{title: 'Học giáo lý'}}/>
         </Tab.Navigator>
     </View>
   )
