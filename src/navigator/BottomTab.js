@@ -27,7 +27,7 @@ export default function BottomTab() {
                     else if(routeName == "GiaoLyView") {
                         iconName = 'ios-book-outline'
                     }
-                    return <Ionicons name={iconName} size={18} color={focused ? 'blue' : ''}/>
+                    // return <Ionicons name={iconName} size={18} color={focused ? 'blue' : ''}/>
                 },
                 tabBarActiveTintColor: 'blue',
                 tabBarStyle: { height: 40 },

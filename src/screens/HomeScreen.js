@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: '700',
         marginBottom: 2,
-        fontFamily: "Times New Roman"
+        // fontFamily: "Times New Roman"
     },
     textLogo_2: {
         color: '#ea8203',
