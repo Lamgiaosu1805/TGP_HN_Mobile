@@ -7,7 +7,7 @@ export default function HocGiaoLy() {
 
     const loadHtml = async () => {
         let data = [];
-        const url = "https://www.tonggiaophanhanoi.org/category/giao-ly/tin-mung-mat-theu/page/4/";
+        const url = "https://www.tonggiaophanhanoi.org/category/giao-ly/tin-mung-mat-theu/";
         try {
             const response = await fetch(url);
             const htmlString = await response.text();
