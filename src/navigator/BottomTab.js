@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import CalendarScreen from '../screens/CalendarScreen';
 import HomeWebView from '../screens/HomeWebView';
 import HocGiaoLy from '../screens/HocGiaoLy';
+import Menu from '../screens/Menu';
 
 const Tab = createBottomTabNavigator();
 export default function BottomTab() {
@@ -22,21 +23,26 @@ export default function BottomTab() {
                         iconName = 'home'
                     }
                     else if(routeName == "CalendarView") {
-                        iconName = 'ios-calendar-outline'
+                        iconName = 'calendar-week'
                     }
                     else if(routeName == "GiaoLyView") {
-                        iconName = 'ios-book-outline'
+                        iconName = 'book'
                     }
-                    // return <Ionicons name={iconName} size={18} color={focused ? 'blue' : ''}/>
+                    else if(routeName == "MenuView") {
+                        iconName = 'bars'
+                    }
+                    return <Icon name={iconName} size={18} color={focused ? '#003399' : '#413e3e'} />
                 },
-                tabBarActiveTintColor: 'blue',
-                tabBarStyle: { height: 40 },
+                tabBarActiveTintColor: '#003399',
+                tabBarStyle: { height: Platform.OS === "ios" ? 45 : 60},
+                tabBarItemStyle: {paddingBottom: Platform.OS === "ios" ? 0 : 10}
                 })
             }
         >
             <Tab.Screen name="HomeWebView" component={HomeWebView} options={{title: 'Trang chủ'}}/>
             <Tab.Screen name="CalendarView" component={CalendarScreen} options={{title: 'Lịch Công giáo'}}/>
             <Tab.Screen name="GiaoLyView" component={HocGiaoLy} options={{title: 'Học giáo lý'}}/>
+            <Tab.Screen name="MenuView" component={Menu} options={{title: 'Menu'}}/>
         </Tab.Navigator>
     </View>
   )

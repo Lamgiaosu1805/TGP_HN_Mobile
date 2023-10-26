@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function TestScreens() {
+export default function LinhMucScreen({navigation}) {
   return (
     <View>
-      <Text>TestScreens</Text>
+      <Text>LinhMucScreen</Text>
     </View>
   )
 }

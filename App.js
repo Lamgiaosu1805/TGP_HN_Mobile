@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import store from './src/redux/store';
 import CalendarDetail from './src/screens/CalendarDetail';
 import BottomTab from './src/navigator/BottomTab';
+import LinhMucScreen from './src/screens/LinhMucScreen';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
           >
             <Stack.Screen name="Home" component={BottomTab}/>
             <Stack.Screen name="CalendarDetail" component={CalendarDetail}/>
+            <Stack.Screen name="LinhMucScreen" component={LinhMucScreen} />
           </Stack.Navigator>
         </SafeAreaView>
       </NavigationContainer>
