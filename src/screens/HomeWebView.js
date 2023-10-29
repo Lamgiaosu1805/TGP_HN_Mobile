@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import WebView from 'react-native-webview'
 import Shimmer from '../components/Shimmer';
 
-const ActivityIndicatorElement = () => {
+export function ActivityIndicatorElement() {
     return (
       <View style={styles.activityIndicatorStyle}>
         <ActivityIndicator color="#009688" size="large" />
