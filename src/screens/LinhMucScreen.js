@@ -1,14 +1,14 @@
-import { ActivityIndicator, FlatList, Image, StyleSheet, Text, TextInput, View } from 'react-native'
+import { ActivityIndicator, FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import utils from '../utils'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-export default function LinhMucScreen() {
+export default function LinhMucScreen({navigation}) {
     const [page, setPage] = useState(1);
     const [listLm, setListLm] = useState([])
     const getListLinhMuc = () => {
-        axios.get(`${utils.apiUrl}/linhmucdoan/`)
+        axios.get(`${utils.apiUrl}/linhmucdoan/page/${page}`)
             .then(res => setListLm(res.data.data))
             .catch(err => console.log(err))
     }
@@ -16,19 +16,23 @@ export default function LinhMucScreen() {
         getListLinhMuc();
     }, []);
 
-    const LmItem = ({name, image}) => (
-        <View style={styles.lmItem}>
+    const LmItem = ({linhMuc}) => (
+        <TouchableOpacity 
+        activeOpacity={0.6} 
+        style={styles.lmItem}
+        onPress={() => navigation.navigate('LinhMucDetailScreen', linhMuc)}
+    >
             <Image 
                 source={{
-                    uri: image == ""
+                    uri: linhMuc.image == ""
                     ? "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
-                    : image
+                    : linhMuc.image
                 }}
                 style={styles.img}
                 resizeMode='contain'
             />
-            <Text style={styles.textItem}>{"Lm. " + name}</Text>
-        </View>
+            <Text style={styles.textItem}>{"Lm. " + linhMuc.name}</Text>
+        </TouchableOpacity>
     )
 
     return (
@@ -50,7 +54,7 @@ export default function LinhMucScreen() {
                 <FlatList 
                     data={listLm}
                     renderItem={({item}) => 
-                        <LmItem name={item.name} image={item.image}/>
+                        <LmItem linhMuc={item}/>
                     }
                 />
                 :
