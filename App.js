@@ -8,6 +8,8 @@ import CalendarDetail from './src/screens/CalendarDetail';
 import BottomTab from './src/navigator/BottomTab';
 import LinhMucScreen from './src/screens/LinhMucScreen';
 import LinhMucDetailScreen from './src/screens/LinhMucDetailScreen';
+import GiaoXuScreen from './src/screens/GiaoXuScreen';
+import GiaoXuDetailScreen from './src/screens/GiaoXuDetailScreen';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -26,6 +28,8 @@ export default function App() {
             <Stack.Screen name="CalendarDetail" component={CalendarDetail}/>
             <Stack.Screen name="LinhMucScreen" component={LinhMucScreen} />
             <Stack.Screen name="LinhMucDetailScreen" component={LinhMucDetailScreen} />
+            <Stack.Screen name="GiaoXuScreen" component={GiaoXuScreen} />
+            <Stack.Screen name="GiaoXuDetailScreen" component={GiaoXuDetailScreen} />
           </Stack.Navigator>
         </SafeAreaView>
       </NavigationContainer>

@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontSize: 20,
-        fontWeight: '700',
+        fontWeight: '600',
     },
     lmItem: {
         alignItems: 'center',

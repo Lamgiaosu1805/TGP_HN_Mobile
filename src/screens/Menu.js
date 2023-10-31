@@ -14,7 +14,7 @@ export default function Menu({navigation}) {
             </View>
             <View style={styles.menuAreaItem}>
                 <MenuItem title= "Các Giáo hạt"/>
-                <MenuItem title= "Các Giáo xứ"/>
+                <MenuItem title= "Các Giáo xứ" navigation={navigation} screenName="GiaoXuScreen"/>
                 <MenuItem title= "Linh mục đoàn" navigation={navigation} screenName="LinhMucScreen"/>
             </View>
         </View>
