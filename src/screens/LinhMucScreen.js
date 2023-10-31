@@ -1,27 +1,47 @@
 import { ActivityIndicator, FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
 import utils from '../utils'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default function LinhMucScreen({navigation}) {
     const [page, setPage] = useState(1);
-    const [listLm, setListLm] = useState([])
+    const [listLm, setListLm] = useState([]);
+    const [loading, setLoading] = useState(false);
+
     const getListLinhMuc = () => {
+        setLoading(true)
         axios.get(`${utils.apiUrl}/linhmucdoan/page/${page}`)
-            .then(res => setListLm(res.data.data))
-            .catch(err => console.log(err))
+            .then(res => {
+                if(res.data.data.length == 0) {
+                    setLoading(false);
+                    return;
+                }
+                setListLm([...listLm, ...res.data.data]);
+                setPage(page+1)
+                setLoading(false)
+            })
+            .catch(err => {
+                console.log(err)
+                setLoading(false)
+            })
     }
     useEffect(() => {
         getListLinhMuc();
     }, []);
 
-    const LmItem = ({linhMuc}) => (
+    const loadMore = () => {
+        if(loading === false) {
+            getListLinhMuc();
+        }
+    }
+
+    const LmItem = useCallback(({linhMuc}) => (
         <TouchableOpacity 
-        activeOpacity={0.6} 
-        style={styles.lmItem}
-        onPress={() => navigation.navigate('LinhMucDetailScreen', linhMuc)}
-    >
+            activeOpacity={0.6} 
+            style={styles.lmItem}
+            onPress={() => navigation.navigate('LinhMucDetailScreen', linhMuc)}
+        >
             <Image 
                 source={{
                     uri: linhMuc.image == ""
@@ -33,7 +53,7 @@ export default function LinhMucScreen({navigation}) {
             />
             <Text style={styles.textItem}>{"Lm. " + linhMuc.name}</Text>
         </TouchableOpacity>
-    )
+    ), []);
 
     return (
         <View style={styles.container}>
@@ -56,13 +76,21 @@ export default function LinhMucScreen({navigation}) {
                     renderItem={({item}) => 
                         <LmItem linhMuc={item}/>
                     }
+                    onEndReached={() => {loadMore()}}
                 />
                 :
                 <View style={{flex: 1, justifyContent:'center'}}>
                     <ActivityIndicator />
                 </View>
             }
-            
+            {
+                loading === true
+                    ?
+                    <View style={{justifyContent:'center', position: 'absolute', bottom: 10, left: 0, right: 0}}>
+                        <ActivityIndicator />
+                    </View>
+                    : <></>
+            }
         </View>
     )
 }
