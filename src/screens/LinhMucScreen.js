@@ -41,25 +41,26 @@ export default function LinhMucScreen({navigation}) {
     }, []);
 
     const loadMore = () => {
-        if(loading === false && searchStatus == false) {
+        if(loading === false && searchString == "") {
             getListLinhMuc(page);
         }
     }
 
     const searchLm = (value) => {
+        searchStatus(true)
         if(value == "") {
-            getListLinhMuc(1, true)
-            setSearchStatus(false)
+            getListLinhMuc(1, true);
+            setSearchStatus(false);
         }
         else {
             axios.post(`${utils.apiUrl}/linhmucdoan/search`, {
                 "searchValue": value
             }).then(res => {
-                setListLm(res.data)
-                if(searchStatus) return
-                setSearchStatus(true)
+                setListLm(res.data);
+                setSearchStatus(false);
             })
         }
+        
     }
 
     const LmItem = useCallback(({linhMuc}) => (
@@ -99,7 +100,7 @@ export default function LinhMucScreen({navigation}) {
                 />
             </View>
             {
-                listLm.length > 0
+                listGx.length > 0 && searchStatus == false
                 ?
                 <FlatList 
                     data={listLm}

@@ -40,25 +40,27 @@ export default function GiaoXuScreen({navigation}) {
     },[]);
 
     const loadMore = () => {
-        if(loading === false && searchStatus == false) {
+        if(loading === false && searchString == "") {
             getDataGiaoXu(page);
         }
     }
 
     const searchGx = (value) => {
+        setSearchStatus(true)
         if(value == "") {
             getDataGiaoXu(1, true)
             setSearchStatus(false)
+            
         }
         else {
             axios.post(`${utils.apiUrl}/giaoxu/search`, {
                 "searchValue": value
             }).then(res => {
                 setListGx(res.data.data)
-                if(searchStatus) return
-                setSearchStatus(true)
+                setSearchStatus(false)
             })
         }
+        
     }
 
     const GxItem = useCallback(({giaoXu}) => {
@@ -106,7 +108,7 @@ export default function GiaoXuScreen({navigation}) {
                 />
             </View>
             {
-                listGx.length > 0
+                listGx.length > 0 && searchStatus == false
                 ?
                 <FlatList 
                     data={listGx}
