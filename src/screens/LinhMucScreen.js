@@ -47,7 +47,7 @@ export default function LinhMucScreen({navigation}) {
     }
 
     const searchLm = (value) => {
-        searchStatus(true)
+        setSearchStatus(true)
         if(value == "") {
             getListLinhMuc(1, true);
             setSearchStatus(false);
