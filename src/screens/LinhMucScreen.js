@@ -8,17 +8,26 @@ export default function LinhMucScreen({navigation}) {
     const [page, setPage] = useState(1);
     const [listLm, setListLm] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [searchString, setSearchString] = useState("");
+    const [searchStatus, setSearchStatus] = useState(false)
 
-    const getListLinhMuc = () => {
+    const getListLinhMuc = (pageLm, reset) => {
         setLoading(true)
-        axios.get(`${utils.apiUrl}/linhmucdoan/page/${page}`)
+        if(typeof pageLm != 'number') return;
+        axios.get(`${utils.apiUrl}/linhmucdoan/page/${pageLm}`)
             .then(res => {
                 if(res.data.data.length == 0) {
                     setLoading(false);
                     return;
                 }
-                setListLm([...listLm, ...res.data.data]);
-                setPage(page+1)
+                if(reset == true) {
+                    setListLm(res.data.data)
+                    setPage(2)
+                }
+                else {
+                    setListLm([...listLm, ...res.data.data]);
+                    setPage(page+1)
+                }
                 setLoading(false)
             })
             .catch(err => {
@@ -26,13 +35,30 @@ export default function LinhMucScreen({navigation}) {
                 setLoading(false)
             })
     }
+
     useEffect(() => {
-        getListLinhMuc();
+        getListLinhMuc(1);
     }, []);
 
     const loadMore = () => {
-        if(loading === false) {
-            getListLinhMuc();
+        if(loading === false && searchStatus == false) {
+            getListLinhMuc(page);
+        }
+    }
+
+    const searchLm = (value) => {
+        if(value == "") {
+            getListLinhMuc(1, true)
+            setSearchStatus(false)
+        }
+        else {
+            axios.post(`${utils.apiUrl}/linhmucdoan/search`, {
+                "searchValue": value
+            }).then(res => {
+                setListLm(res.data)
+                if(searchStatus) return
+                setSearchStatus(true)
+            })
         }
     }
 
@@ -66,6 +92,10 @@ export default function LinhMucScreen({navigation}) {
                     enterKeyHint='search'
                     style={styles.searchInput}
                     placeholder='Tìm kiếm ở đây...'
+                    onChangeText={(value) => setSearchString(value.trim())}
+                    onSubmitEditing={() => {
+                        searchLm(searchString)
+                    }}
                 />
             </View>
             {
@@ -76,7 +106,7 @@ export default function LinhMucScreen({navigation}) {
                     renderItem={({item}) => 
                         <LmItem linhMuc={item}/>
                     }
-                    onEndReached={() => {loadMore()}}
+                    onEndReached={loadMore}
                 />
                 :
                 <View style={{flex: 1, justifyContent:'center'}}>
