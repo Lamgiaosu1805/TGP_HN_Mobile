@@ -100,7 +100,7 @@ export default function LinhMucScreen({navigation}) {
                 />
             </View>
             {
-                listGx.length > 0 && searchStatus == false
+                listLm.length > 0 && searchStatus == false
                 ?
                 <FlatList 
                     data={listLm}
