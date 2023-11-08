@@ -1,10 +1,10 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 
 export default function GiaoXuDetailScreen({route, navigation}) {
     const giaoXu = route.params
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={{alignItems: 'center'}}>
                 <Image 
                     source={{
@@ -25,7 +25,7 @@ export default function GiaoXuDetailScreen({route, navigation}) {
                         )
                     }
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
