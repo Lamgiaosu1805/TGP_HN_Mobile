@@ -1,28 +1,21 @@
 {
   "cli": {
-    "version": ">= 3.5.0"
+    "version": ">= 5.6.0"
   },
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal",
-      "ios": {
-        "resourceClass": "m1-medium"
-      },
-      "your-build-profile": {
-        "releaseChannel": "default"
-      }  
+      "distribution": "internal"
     },
     "preview": {
+      "channel": "default",
       "distribution": "internal",
-      "ios": {
-        "resourceClass": "m1-medium"
+      "android": {
+        "buildType": "apk"
       }
     },
     "production": {
-      "ios": {
-        "resourceClass": "m1-medium"
-      }
+      "channel": "default"
     }
   },
   "submit": {
