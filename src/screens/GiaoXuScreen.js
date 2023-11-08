@@ -1,36 +1,63 @@
-import { ActivityIndicator, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
-import axios from 'axios'
-import utils from '../utils'
+import axios from 'axios';
+import utils from '../utils';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default function GiaoXuScreen({navigation}) {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [listGx, setListGx] = useState([]);
-    const getDataGiaoXu = () => {
+    const [searchString, setSearchString] = useState("");
+    const [searchStatus, setSearchStatus] = useState(false);
+
+    const getDataGiaoXu = (pageGx, reset) => {
         setLoading(true)
-        axios.get(`${utils.apiUrl}/giaoxu/page/${page}`)
+        axios.get(`${utils.apiUrl}/giaoxu/page/${pageGx}`)
             .then(res => {
                 if(res.data.data.length == 0) {
                     setLoading(false);
                     return;
                 }
-                setListGx([...listGx, ...res.data.data]);
+                if(reset == true) {
+                    setListGx(res.data.data)
+                    setPage(2)
+                }
+                else {
+                    setListGx([...listGx, ...res.data.data]);
+                    setPage(page+1)
+                }
                 setLoading(false)
-                setPage(page+1)
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
+                setLoading(false)
             })
     }
 
     useEffect(() => {
-        getDataGiaoXu()
+        getDataGiaoXu(1)
     },[]);
 
     const loadMore = () => {
-        if(loading === false) {
-            getDataGiaoXu();
+        if(loading === false && searchStatus == false) {
+            getDataGiaoXu(page);
+        }
+    }
+
+    const searchGx = (value) => {
+        if(value == "") {
+            getDataGiaoXu(1, true)
+            setSearchStatus(false)
+        }
+        else {
+            axios.post(`${utils.apiUrl}/giaoxu/search`, {
+                "searchValue": value
+            }).then(res => {
+                setListGx(res.data.data)
+                if(searchStatus) return
+                setSearchStatus(true)
+            })
         }
     }
 
@@ -65,6 +92,18 @@ export default function GiaoXuScreen({navigation}) {
         <View style={styles.container}>
             <View style={styles.title}>
                 <Text style={styles.titleText}>DANH SÁCH CÁC GIÁO XỨ TGP HÀ NỘI</Text>
+            </View>
+            <View style={styles.inputArea}>
+                <Icon name='search' size={16} color="#6a6d73" style={{marginLeft: 8}}/>
+                <TextInput
+                    enterKeyHint='search'
+                    style={styles.searchInput}
+                    placeholder='Tìm kiếm ở đây...'
+                    onChangeText={(value) => setSearchString(value.trim())}
+                    onSubmitEditing={() => {
+                        searchGx(searchString)
+                    }}
+                />
             </View>
             {
                 listGx.length > 0
@@ -142,5 +181,21 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         textAlign: 'center',
         marginBottom: 4
-    }
+    },
+    inputArea: {
+        marginHorizontal: 16,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderColor: '#6a6d73',
+        marginBottom: 16,
+        marginTop: 8
+    },
+    searchInput: {
+        flex: 1,
+        fontSize: 18,
+        color:'#6a6d73',
+        marginVertical: 8,
+        marginLeft: 4
+    },
 })

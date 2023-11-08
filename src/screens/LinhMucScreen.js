@@ -114,7 +114,7 @@ export default function LinhMucScreen({navigation}) {
                 </View>
             }
             {
-                loading === true
+                loading === true && page > 1
                     ?
                     <View style={{justifyContent:'center', position: 'absolute', bottom: 10, left: 0, right: 0}}>
                         <ActivityIndicator />
