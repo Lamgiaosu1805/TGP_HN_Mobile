@@ -8,7 +8,7 @@ import ListGiaoLy from '../components/ListGiaoLy';
 import axios from 'axios';
 import utils from '../utils';
 
-export default function HocGiaoLy() {
+export default function HocGiaoLy({navigation}) {
     const [optionSelected, setOptionSelected] = useState(0);
     const [list1, setList1] = useState([])
     const [list2, setList2] = useState([])
@@ -72,7 +72,7 @@ export default function HocGiaoLy() {
                         onPageSelected={(e) => setOptionSelected(e.nativeEvent.position)}
                     >
                         <View key="1">
-                            <ListGiaoLy option={0} data={list1}/>
+                            <ListGiaoLy option={0} data={list1} navigation={navigation}/>
                         </View>
                         <View key="2">
                             <ListGiaoLy option={1} data={list2}/>

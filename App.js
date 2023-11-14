@@ -10,6 +10,7 @@ import LinhMucScreen from './src/screens/LinhMucScreen';
 import LinhMucDetailScreen from './src/screens/LinhMucDetailScreen';
 import GiaoXuScreen from './src/screens/GiaoXuScreen';
 import GiaoXuDetailScreen from './src/screens/GiaoXuDetailScreen';
+import GiaoLyDetai from './src/screens/GiaoLyDetai';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
             <Stack.Screen name="LinhMucDetailScreen" component={LinhMucDetailScreen} />
             <Stack.Screen name="GiaoXuScreen" component={GiaoXuScreen} />
             <Stack.Screen name="GiaoXuDetailScreen" component={GiaoXuDetailScreen} />
+            <Stack.Screen name="GiaoLyDetail" component={GiaoLyDetai} />
           </Stack.Navigator>
         </SafeAreaView>
       </NavigationContainer>

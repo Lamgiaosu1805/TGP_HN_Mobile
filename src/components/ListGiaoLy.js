@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
-export default function ListGiaoLy({option, data}) {
+export default function ListGiaoLy({option, data, navigation}) {
     const [focusItem, setFocusItem] = useState(null);
     return (
         <ScrollView style={{flex: 1}}>
@@ -13,7 +13,9 @@ export default function ListGiaoLy({option, data}) {
                         activeOpacity={0.6} 
                         onPressIn={() => {setFocusItem(e)}}
                         onPressOut={() => {setFocusItem(null)}}
-                        onPress={() => console.log(e.url)}
+                        onPress={() => navigation.push('GiaoLyDetail', {
+                            url: e.url
+                        })}
                     >
                         <Text style={[focusItem === e ? {color: 'red'} : {}, {fontSize: 16}]}>
                             {e.title}
