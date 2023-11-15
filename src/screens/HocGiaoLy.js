@@ -1,4 +1,4 @@
-import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import { ActivityIndicator, Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 import React, { useRef, useState } from 'react'
 import { useEffect } from 'react';
 import * as cheerio from 'cheerio';
@@ -72,10 +72,26 @@ export default function HocGiaoLy({navigation}) {
                         onPageSelected={(e) => setOptionSelected(e.nativeEvent.position)}
                     >
                         <View key="1">
-                            <ListGiaoLy option={0} data={list1} navigation={navigation}/>
+                            {
+                                list1.length > 0
+                                ?
+                                <ListGiaoLy option={0} data={list1} navigation={navigation}/>
+                                :
+                                <View style={{flex: 1, justifyContent:'center', alignItems: 'center'}}>
+                                    <ActivityIndicator />
+                                </View>
+                            }
                         </View>
                         <View key="2">
-                            <ListGiaoLy option={1} data={list2}/>
+                            {
+                                list2.length > 0
+                                ?
+                                <ListGiaoLy option={1} data={list2} navigation={navigation}/>
+                                :
+                                <View style={{flex: 1, justifyContent:'center', alignItems: 'center'}}>
+                                    <ActivityIndicator />
+                                </View>
+                            }
                         </View>
                     </PagerView>
                 </View>

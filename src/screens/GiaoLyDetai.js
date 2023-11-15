@@ -1,11 +1,12 @@
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import utils from '../utils'
 import YoutubePlayer from "react-native-youtube-iframe";
+import WebView from 'react-native-webview';
 
 export default function GiaoLyDetai({route}) {
-    const {url} = route.params;
+    const {url, type} = route.params;
     const [data, setData] = useState(null)
     
     useEffect(() => {
@@ -26,10 +27,20 @@ export default function GiaoLyDetai({route}) {
                         {
                             data.link
                                 ?
-                                <YoutubePlayer
-                                    height={250}
-                                    videoId={data.link.split("/")[url.split("/").length - 1].split("?")[0]}
-                                />
+                                type === 0 
+                                    ?
+                                    <YoutubePlayer
+                                        height={250}
+                                        videoId={data.link.split("/")[url.split("/").length - 1].split("?")[0]}
+                                    />
+                                    :
+                                    //Tạm thời sử dụng webView
+                                    <WebView 
+                                        source={{ uri: data.link }}
+                                        style={{width: Dimensions.get('window').width, height: 200}}
+                                        javaScriptEnabled={true}
+                                        domStorageEnabled={true}
+                                    />
                                 :
                                 <></>
                         }

@@ -14,7 +14,8 @@ export default function ListGiaoLy({option, data, navigation}) {
                         onPressIn={() => {setFocusItem(e)}}
                         onPressOut={() => {setFocusItem(null)}}
                         onPress={() => navigation.push('GiaoLyDetail', {
-                            url: e.url
+                            url: e.url,
+                            type: option
                         })}
                     >
                         <Text style={[focusItem === e ? {color: 'red'} : {}, {fontSize: 16}]}>
