@@ -2,7 +2,7 @@
   "expo": {
     "name": "TGP_HN",
     "slug": "tgp-hn-app",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/white-tgphanoi.png",
     "userInterfaceStyle": "light",
@@ -27,7 +27,8 @@
         "foregroundImage": "./assets/white-tgphanoi.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.kylanx11.tgphnapp"
+      "package": "com.kylanx11.tgphnapp",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"

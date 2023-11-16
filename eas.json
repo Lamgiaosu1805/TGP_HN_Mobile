@@ -11,11 +11,12 @@
       "channel": "default",
       "distribution": "internal",
       "android": {
-        "buildType": "apk"
+        "buildType": "app-bundle"
       }
     },
     "production": {
-      "channel": "default"
+      "channel": "default",
+      "autoIncrement": true
     }
   },
   "submit": {
